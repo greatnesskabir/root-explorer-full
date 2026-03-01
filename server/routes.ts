@@ -45,19 +45,20 @@ Provide the response strictly in JSON format matching this schema:
   "word": "The originally searched word (can be the root itself)",
   "shortDefinition": "One line, neutral definition of the searched word",
   "coreMeaning": "The core semantic field of the root (Damage, harm, injury, loss...)",
-  "why": "A physical metaphor connecting the word to the root (e.g. **Harm that attaches.** A disease that clings to the body...)",
+  "why": "A deep, impactful explanation of why the word connects to the root. Use physical metaphors. No markdown bolding (no **). Strictly English. Mirror this depth: 'Harm that attaches. A disease that clings to the body. A debt that sticks to your name. A slander that follows you. Harm you cannot simply shake off.'",
   "contrast": "Definition by negation: [contrasting root] + [up to 3 MAX words describing contrasting root]",
-  "derivedForms": ["List of other derived forms. Include form type like '(verb)' or '(noun)' in the string."]
+  "derivedForms": ["List exactly 3 derived forms. These must be 3 different words relating to the root. Do NOT include verb forms. Do NOT include active particles. Only nouns/adjectives. Include form type like '(noun)' in the string."]
 }
 
 Guidelines:
 - If the word is a dialect word, proper noun, or loanword, it may not follow standard root patterns. Return a JSON with empty fields if it cannot be analyzed, or analyze to the best ability and label it.
 - If it is Quranic, label it.
-- If OpenAi doesn't know, use Fallback = Lane's Lexicon / Hans Wehr snippets.
+- If OpenAI doesn't know, use Fallback = Lane's Lexicon / Hans Wehr snippets.
 - If absolutely no verified root data is available, return an object with "error": "No verified root data available for this spelling".
 - Define root as an animating idea, one sun, few reflections. Not a list of meanings.
 - Contrast should be a sharp opposite or near-neighbor.
-- "Why" should have condensed, impactful metaphors.`;
+- In 'coreMeaning', do NOT include the word 'meaning'.
+- Ensure 'word' and 'core' definitions are powerfully distinct.`;
 
       const response = await openai.chat.completions.create({
         model: "gpt-5.2",

@@ -53,13 +53,13 @@ export function RootCard({ root }: RootCardProps) {
         <div className="flex-1 order-2 md:order-1">
           <div className="mb-2">
             <Label>Word</Label>
-            <div className="font-noto text-4xl text-primary font-medium mb-3" dir="rtl">
+            <div className="font-amiri text-4xl text-primary font-medium mb-3" dir="rtl">
               {root.word}
             </div>
             <BodyText>{root.shortDefinition}</BodyText>
           </div>
 
-          <Label>Core Meaning</Label>
+          <Label>Core</Label>
           <BodyText>{root.coreMeaning}</BodyText>
 
           <Label>Why</Label>
