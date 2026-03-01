@@ -1,18 +1,20 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+export const roots = pgTable("roots", {
+  id: serial("id").primaryKey(),
+  root: text("root").notNull().unique(), // The Arabic root itself
+  word: text("word").notNull(), // The originally searched word
+  shortDefinition: text("short_definition").notNull(),
+  coreMeaning: text("core_meaning").notNull(),
+  why: text("why").notNull(),
+  contrast: text("contrast").notNull(),
+  derivedForms: text("derived_forms").array().notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
+export const insertRootSchema = createInsertSchema(roots).omit({ id: true, createdAt: true });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type Root = typeof roots.$inferSelect;
+export type InsertRoot = z.infer<typeof insertRootSchema>;

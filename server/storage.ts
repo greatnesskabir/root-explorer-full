@@ -1,38 +1,44 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { roots, type InsertRoot } from "@shared/schema";
+import { eq, ilike } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getRootByQuery(query: string): Promise<typeof roots.$inferSelect | undefined>;
+  getRecentRoots(limit?: number): Promise<(typeof roots.$inferSelect)[]>;
+  createRoot(root: InsertRoot): Promise<typeof roots.$inferSelect>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+export class DatabaseStorage implements IStorage {
+  async getRootByQuery(query: string): Promise<typeof roots.$inferSelect | undefined> {
+    const [root] = await db
+      .select()
+      .from(roots)
+      .where(
+        eq(roots.word, query)
+      )
+      .limit(1);
 
-  constructor() {
-    this.users = new Map();
+    if (root) return root;
+
+    const [rootByRoot] = await db
+      .select()
+      .from(roots)
+      .where(
+        eq(roots.root, query)
+      )
+      .limit(1);
+
+    return rootByRoot;
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getRecentRoots(limit: number = 10): Promise<(typeof roots.$inferSelect)[]> {
+    return await db.select().from(roots).orderBy(roots.createdAt).limit(limit);
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createRoot(root: InsertRoot): Promise<typeof roots.$inferSelect> {
+    const [created] = await db.insert(roots).values(root).returning();
+    return created;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
