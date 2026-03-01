@@ -1,0 +1,81 @@
+Root-word explorer (SEO friendly) = inherently MSA-based system
+Create an arabic Root analysis is based on Classical / MSA morphology app. Dialect words, proper nouns, and loanwords may not follow standard root patterns. If the word is Quranic, it will be labeled as Quranic usage (Label ONLY—DO NOT interpret deeply). If it is a dialect word, root structure may differ from Classical Arabic (Label ONLY—DO NOT interpret deeply). Conjunction/preposition words - This word is a preposition/conjunction. It does not follow standard root derivation patterns (Label ONLY—DO NOT interpret deeply). Root analysis follows Classical (MSA) Arabic morphology. Include short definition (supporting role) of arabic word being searched. keep it minimal and subordinate to the root, not the star of the show.
+It functions as a search engine (type in Arabic as a root OR full word) and then gives me results of definition of the root word in English in the form of a box. Please use English in definitions for English-speaking users. Define root as a description like WHY it has the meaning of that root (not ONLY monosyllabic definitions), and its deeper meaning. Be descriptive/simple enough to provide an explanation that makes logical, but resonant sense. The definition must be impactful/resonant enough that every future unknown word a reader reads with its root will immediately understand/attach accurate meaning of the word without first defining. Use OpenAI as a search engine and show accurate, available results only. Do not show OpenAI tag. Cache results to reduce API calls for 180 days.
+If OpenAI doesn't know, use: Fallback = Lane's Lexicon / Hans Wehr (abridged, public domain snippets). If neither: "No verified root data available for this spelling”.
+
+Recommended Order: (Clean + Logical)
+Word (Hero Section)
+
+Short definition (1 line). The definition should be: One line, Neutral, Not dominating the page. Smaller than the root title. Don’t Hide the Definition Inside “Core”. “Core” should explain the root’s semantic field — not define the searched word.
+
+—
+Root (on the right side of page, by itself)
+—
+Core Meaning
+The core semantic field of the root
+—
+Why
+Why this word connects to the root in all its metaphorical but landing definitions
+—
+Contrast
+
+—
+Derived forms
+Other derived forms. 
+
+Roots are:
+Classical
+
+
+Morphological
+
+
+Pattern-driven
+
+
+Define roots as follows (without sounding too technical or inflated/dramaticized): 
+One animating idea per root. One sun. Few reflections. Not a list of meanings—a center of gravity. Balanced.
+A physical metaphor the learner can feel. Include explanations/meanings: as abstract; as concrete; as a phrase so that there’s variation in how the root word is applicable in variety of sentences/situations. 
+Pick one sharp opposite or near-neighbor. One contrast per root definition. Each contrast should be a door, not a hallway. Give a sharp contrast to original searched root without going in depth.
+The "Why" section is the variations. [That's where the learner finds the hook that catches them. You don't know which image will unlock it. So you offer a few. But they all orbit the same center: harm that attaches (example for root ضرر). One person needs "disease that clings." Another needs "debt that sticks." Another needs "slander that follows."]
+
+UX/UI Design specs:
+Use ‘Noto Sans Arabic’ for Arabic words display
+Specify only form types: verb/noun/adjective/adverb, etc. in lower opacity…50%? 
+
+Root Definition Format (example):
+
+Root:
+ضرر
+
+Core (main ideas–“accuracy”):
+Damage, harm, injury, loss, detriment; causing or suffering negative effects; broad; mild to moderate
+
+Why (keep this condensed but strong/impactful): 
+**Harm that attaches.** A disease that clings to the body. A debt that sticks to your name. A slander that follows you. Harm you cannot simply shake off. 
+
+Contrast:
+(Give one sharp opposite or near-neighbor root; Give a sharp, brief, monosyllabic contrast to original searched root without going in depth). Definition by negation: [contrasting root] + [up to 3 MAX words describing contrasting root]
+
+Main title: جذر in “Amiri” font, text size 48px
+
+Subtitle: Arabic Root Explorer in ‘Inter’ font, text size 14px. “Word, Root, Core, Why, Contrast, Derived Forms" (the labels) in Inter, text size 11px. Descriptions/body text in Inter size 15px.
+
+Arabic words in derivations: Noto Sans Arabic
+
+
+Font code for  “جذر”:
+.amiri-regular {
+  font-family: "Amiri", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+Font code for “Arabic Root Explorer”:
+.inter-<uniquifier> {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
