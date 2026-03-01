@@ -37,11 +37,17 @@ export default function Home() {
         <motion.div 
           className="w-full"
           animate={{ 
-            marginTop: hasSearched ? "4vh" : "20vh" 
+            marginTop: hasSearched ? "4vh" : "15vh" 
           }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="text-center mb-10">
+          <div className="text-center mb-10 flex flex-col items-center">
+            <h2 className="amiri-regular text-[48px] text-primary mb-1">
+              جذر
+            </h2>
+            <p className="font-inter text-[14px] font-semibold tracking-[0.2em] text-foreground mb-8">
+              ARABIC ROOT EXPLORER
+            </p>
             <AnimatePresence>
               {!hasSearched && (
                 <motion.div
@@ -50,9 +56,6 @@ export default function Home() {
                   exit={{ opacity: 0, height: 0, margin: 0, transition: { duration: 0.3 } }}
                   className="overflow-hidden"
                 >
-                  <h2 className="amiri-regular text-4xl md:text-5xl lg:text-6xl text-primary mb-4">
-                    Discover the Depth
-                  </h2>
                   <p className="font-inter text-muted-foreground text-base md:text-lg max-w-lg mx-auto">
                     Uncover the profound connections between Arabic words through their foundational linguistic roots.
                   </p>

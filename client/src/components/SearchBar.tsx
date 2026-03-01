@@ -42,15 +42,6 @@ export function SearchBar({ onSearch, isLoading }: SearchBarProps) {
         dir="auto"
         className="w-full bg-white pl-16 pr-6 py-5 rounded-[2rem] border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] font-noto text-lg md:text-xl text-foreground placeholder:text-muted-foreground placeholder:font-inter outline-none transition-all duration-300 focus:shadow-[0_8px_30px_rgb(0,0,0,0.08)] focus:border-black/10 disabled:opacity-70"
       />
-      <div className="absolute right-3 inset-y-0 flex items-center pr-3">
-        <button 
-          type="submit" 
-          disabled={isLoading || !query.trim()}
-          className="bg-primary text-primary-foreground font-inter text-sm px-6 py-2.5 rounded-full font-medium hover:bg-primary/90 transition-all duration-200 disabled:opacity-50 disabled:hover:bg-primary"
-        >
-          Search
-        </button>
-      </div>
     </motion.form>
   );
 }
