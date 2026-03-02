@@ -37,11 +37,11 @@ export default function Home() {
           }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="text-center mb-0.5 flex flex-col items-center">
-            <h2 className="amiri-regular text-[72px] text-primary mb-0 leading-none">
+          <div className="text-center flex flex-col items-center">
+            <h2 className="amiri-regular text-[72px] text-primary mb-0.5 leading-none">
               جذر
             </h2>
-            <p className="font-inter text-[14px] font-bold tracking-[0.2em] text-foreground mb-1 uppercase">
+            <p className="font-inter text-[14px] font-thin tracking-[0.2em] text-foreground/70 mb-[5mm] uppercase mt-[2mm]">
               ARABIC ROOT EXPLORER
             </p>
           </div>
@@ -93,6 +93,13 @@ export default function Home() {
           ) : null}
         </AnimatePresence>
       </main>
+
+      {/* Footer */}
+      <footer className="py-8 px-6 text-center z-10 relative mt-auto">
+        <p className="font-inter text-[13px] text-muted-foreground select-none">
+          Uncover the profound connection in Arabic roots  •  <a href="https://www.surveymonkey.com/r/2Q9HCKS" target="_blank" rel="noopener noreferrer" className="hover:text-primary underline underline-offset-4 transition-colors">Give Feedback</a>
+        </p>
+      </footer>
     </div>
   );
 }
