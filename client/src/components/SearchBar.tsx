@@ -40,7 +40,7 @@ export function SearchBar({ onSearch, isLoading }: SearchBarProps) {
         placeholder="Search an Arabic word or root..."
         disabled={isLoading}
         dir="auto"
-        className="w-full bg-white pl-16 pr-6 py-5 rounded-[2rem] border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] font-noto text-lg md:text-xl text-foreground placeholder:text-muted-foreground placeholder:font-inter outline-none transition-all duration-300 focus:shadow-[0_8px_30px_rgb(0,0,0,0.08)] focus:border-black/10 disabled:opacity-70"
+        className="w-full bg-white pl-16 pr-6 py-5 rounded-[2rem] border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] font-noto text-base md:text-lg text-foreground placeholder:text-muted-foreground placeholder:font-inter placeholder:text-[15px] outline-none transition-all duration-300 focus:shadow-[0_8px_30px_rgb(0,0,0,0.08)] focus:border-black/10 disabled:opacity-70"
       />
     </motion.form>
   );

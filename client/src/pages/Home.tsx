@@ -22,13 +22,10 @@ export default function Home() {
       {/* Decorative subtle background gradient */}
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-black/[0.02] to-transparent pointer-events-none" />
 
-      {/* Header */}
+      {/* Header - Empty space as requested */}
       <header className="py-8 px-6 md:px-12 flex items-center justify-between z-10 relative">
         <div className="flex items-center gap-3">
           <div className="w-2 h-2 rounded-full bg-primary" />
-          <h1 className="font-inter text-[14px] font-semibold tracking-wide text-foreground">
-            Arabic Root Explorer
-          </h1>
         </div>
       </header>
 
@@ -42,26 +39,12 @@ export default function Home() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="text-center mb-10 flex flex-col items-center">
-            <h2 className="amiri-regular text-[48px] text-primary mb-1">
+            <h2 className="amiri-regular text-[52px] text-primary mb-1">
               جذر
             </h2>
-            <p className="font-inter text-[14px] font-semibold tracking-[0.2em] text-foreground mb-8">
+            <p className="font-inter text-[14px] font-thin tracking-[0.2em] text-foreground/40 mb-8 uppercase">
               ARABIC ROOT EXPLORER
             </p>
-            <AnimatePresence>
-              {!hasSearched && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, height: 0, margin: 0, transition: { duration: 0.3 } }}
-                  className="overflow-hidden"
-                >
-                  <p className="font-inter text-muted-foreground text-base md:text-lg max-w-lg mx-auto">
-                    Uncover the profound connections between Arabic words through their foundational linguistic roots.
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
 
           <SearchBar 

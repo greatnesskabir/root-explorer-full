@@ -5,8 +5,8 @@ interface RootCardProps {
   root: Root;
 }
 
-const Label = ({ children }: { children: React.ReactNode }) => (
-  <h3 className="font-inter text-[11px] uppercase tracking-widest text-muted-foreground mb-2 mt-8 select-none">
+const Label = ({ children, className }: { children: React.ReactNode, className?: string }) => (
+  <h3 className={`font-inter text-[11px] uppercase tracking-widest text-muted-foreground mb-2 mt-8 select-none ${className || ""}`}>
     {children}
   </h3>
 );
@@ -18,7 +18,6 @@ const BodyText = ({ children }: { children: React.ReactNode }) => (
 );
 
 const DerivedFormItem = ({ text }: { text: string }) => {
-  // Split text to fade out the parts in parentheses, e.g., "كَاتِب (noun)" -> fades "(noun)"
   const parts = text.split(/(\([^)]+\))/g);
   
   return (
@@ -52,7 +51,19 @@ export function RootCard({ root }: RootCardProps) {
         {/* Main Content (Left) */}
         <div className="flex-1 order-2 md:order-1">
           <div className="mb-2">
-            <Label>Word</Label>
+            <div className="flex items-center gap-3 mb-2">
+              <Label className="mt-0 mb-0">Word</Label>
+              {root.isQuranic === 'yes' && (
+                <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-inter font-bold uppercase tracking-wider">
+                  Quranic
+                </span>
+              )}
+              {root.isDialect === 'yes' && (
+                <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-inter font-bold uppercase tracking-wider">
+                  Dialect
+                </span>
+              )}
+            </div>
             <BodyText>{root.shortDefinition}</BodyText>
           </div>
 
@@ -67,7 +78,7 @@ export function RootCard({ root }: RootCardProps) {
 
           <Label>Derived Forms</Label>
           <ul className="mt-4">
-            {root.derivedForms.map((form, idx) => (
+            {root.derivedForms.slice(0, 3).map((form, idx) => (
               <DerivedFormItem key={idx} text={form} />
             ))}
           </ul>

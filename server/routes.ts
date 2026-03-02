@@ -43,16 +43,18 @@ Provide the response strictly in JSON format matching this schema:
 {
   "root": "The isolated Arabic root letters (e.g. ض ر ر)",
   "word": "The originally searched word (can be the root itself)",
-  "shortDefinition": "One line, neutral definition of the searched word",
+  "shortDefinition": "Extremely concise, neutral definition of the searched word (few words max)",
   "coreMeaning": "The core semantic field of the root (Damage, harm, injury, loss...)",
   "why": "A deep, impactful explanation of why the word connects to the root. Use physical metaphors. No markdown bolding (no **). Strictly English. Mirror this depth: 'Harm that attaches. A disease that clings to the body. A debt that sticks to your name. A slander that follows you. Harm you cannot simply shake off.'",
   "contrast": "Definition by negation: [contrasting root] + [up to 3 MAX words describing contrasting root]",
-  "derivedForms": ["List exactly 3 derived forms. These must be 3 different words relating to the root. Do NOT include verb forms. Do NOT include active particles. Only nouns/adjectives. Include form type like '(noun)' in the string."]
+  "derivedForms": ["List exactly 3 derived forms. These must be 3 different words relating to the root. Do NOT include verb forms. Do NOT include active particles. Only nouns/adjectives. Include form type like '(noun)' in the string."],
+  "isQuranic": "yes or no",
+  "isDialect": "yes or no"
 }
 
 Guidelines:
 - If the word is a dialect word, proper noun, or loanword, it may not follow standard root patterns. Return a JSON with empty fields if it cannot be analyzed, or analyze to the best ability and label it.
-- If it is Quranic, label it.
+- If it is Quranic, label it by setting isQuranic to 'yes'.
 - If OpenAI doesn't know, use Fallback = Lane's Lexicon / Hans Wehr snippets.
 - If absolutely no verified root data is available, return an object with "error": "No verified root data available for this spelling".
 - Define root as an animating idea, one sun, few reflections. Not a list of meanings.
@@ -71,13 +73,18 @@ Guidelines:
 
       const responseText = response.choices[0].message.content;
       if (!responseText) {
-         return res.status(404).json({ message: "No verified root data available for this spelling" });
+        return res.status(404).json({ message: "No verified root data available for this spelling" });
       }
 
-      const aiData = JSON.parse(responseText);
+      let aiData;
+      try {
+        aiData = JSON.parse(responseText);
+      } catch (e) {
+        return res.status(500).json({ message: "Failed to parse analysis" });
+      }
 
       if (aiData.error) {
-         return res.status(404).json({ message: aiData.error });
+        return res.status(404).json({ message: aiData.error });
       }
 
       const insertRoot = {
@@ -87,14 +94,15 @@ Guidelines:
         coreMeaning: aiData.coreMeaning || "",
         why: aiData.why || "",
         contrast: aiData.contrast || "",
-        derivedForms: aiData.derivedForms || []
+        derivedForms: aiData.derivedForms || [],
+        isQuranic: aiData.isQuranic === 'yes' ? 'yes' : 'no',
+        isDialect: aiData.isDialect === 'yes' ? 'yes' : 'no'
       };
 
       try {
         const savedRoot = await storage.createRoot(insertRoot);
         return res.json(savedRoot);
       } catch (dbError: any) {
-         // Could be a unique constraint violation if root was generated but already exists under a different search word
          if (dbError.code === '23505') {
             const fallback = await storage.getRootByQuery(insertRoot.root);
             if (fallback) return res.json(fallback);

@@ -11,6 +11,8 @@ export const roots = pgTable("roots", {
   why: text("why").notNull(),
   contrast: text("contrast").notNull(),
   derivedForms: text("derived_forms").array().notNull(),
+  isQuranic: text("is_quranic").default("no"), // "yes" or "no"
+  isDialect: text("is_dialect").default("no"), // "yes" or "no"
   createdAt: timestamp("created_at").defaultNow(),
 });
 
