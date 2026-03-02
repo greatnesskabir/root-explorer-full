@@ -22,10 +22,9 @@ export default function Home() {
       {/* Decorative subtle background gradient */}
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-black/[0.02] to-transparent pointer-events-none" />
 
-      {/* Header - Empty space as requested */}
+      {/* Header - Removed black dot */}
       <header className="py-8 px-6 md:px-12 flex items-center justify-between z-10 relative">
         <div className="flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-primary" />
         </div>
       </header>
 
@@ -38,11 +37,11 @@ export default function Home() {
           }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="text-center mb-10 flex flex-col items-center">
-            <h2 className="amiri-regular text-[52px] text-primary mb-1">
+          <div className="text-center mb-0.5 flex flex-col items-center">
+            <h2 className="amiri-regular text-[72px] text-primary mb-0 leading-none">
               جذر
             </h2>
-            <p className="font-inter text-[14px] font-thin tracking-[0.2em] text-foreground/40 mb-8 uppercase">
+            <p className="font-inter text-[14px] font-bold tracking-[0.2em] text-foreground mb-1 uppercase">
               ARABIC ROOT EXPLORER
             </p>
           </div>
