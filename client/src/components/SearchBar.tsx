@@ -47,7 +47,7 @@ export function SearchBar({ onSearch, isLoading }: SearchBarProps) {
       <button
         type="submit"
         disabled={isLoading || !query.trim()}
-        className="bg-primary text-white font-inter text-[15px] font-medium px-8 py-5 rounded-[2rem] transition-all duration-300 hover:opacity-90 disabled:opacity-50 shrink-0 flex items-center justify-center min-h-full"
+        className="bg-primary text-white font-inter px-8 py-5 rounded-[2rem] transition-all duration-300 hover:opacity-90 disabled:opacity-50 shrink-0 flex items-center justify-center min-h-full font-normal text-[14px]"
       >
         {isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : "Explore"}
       </button>
