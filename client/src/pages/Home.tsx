@@ -21,13 +21,11 @@ export default function Home() {
     <div className="min-h-screen flex flex-col relative overflow-hidden">
       {/* Decorative subtle background gradient */}
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-black/[0.02] to-transparent pointer-events-none" />
-
       {/* Header - Removed black dot */}
       <header className="py-8 px-6 md:px-12 flex items-center justify-between z-10 relative">
         <div className="flex items-center gap-3">
         </div>
       </header>
-
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center px-4 md:px-8 pb-24 z-10 relative">
         <motion.div 
@@ -41,7 +39,7 @@ export default function Home() {
             <h2 className="amiri-regular text-[72px] text-primary mb-0.5 leading-none">
               جذر
             </h2>
-            <p className="font-inter text-[14px] font-thin tracking-[0.2em] text-foreground/70 mb-[5mm] uppercase mt-[2mm]">
+            <p className="font-inter text-[14px] tracking-[0.2em] text-foreground/70 mb-[5mm] uppercase mt-[2mm] font-light text-center">
               ARABIC ROOT EXPLORER
             </p>
           </div>
@@ -93,7 +91,6 @@ export default function Home() {
           ) : null}
         </AnimatePresence>
       </main>
-
       {/* Footer */}
       <footer className="py-8 px-6 text-center z-10 relative mt-auto">
         <p className="font-inter text-[13px] text-muted-foreground select-none">
