@@ -38,7 +38,7 @@ export function SearchBar({ onSearch, isLoading }: SearchBarProps) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search an Arabic word or root..."
+          placeholder="Enter root or word"
           disabled={isLoading}
           dir="auto"
           className="w-full h-full bg-white py-5 rounded-[2rem] border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] font-noto text-base md:text-lg text-foreground placeholder:text-muted-foreground placeholder:font-inter placeholder:text-[15px] outline-none transition-all duration-300 focus:shadow-[0_8px_30px_rgb(0,0,0,0.08)] focus:border-black/10 disabled:opacity-70 pt-[2px] pb-[2px] pl-[50px] pr-[50px]"

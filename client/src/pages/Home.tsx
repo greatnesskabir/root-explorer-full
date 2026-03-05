@@ -35,11 +35,11 @@ export default function Home() {
           }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="text-center flex flex-col items-center text-[16px] pt-[20px] pb-[20px]">
+          <div className="text-center flex flex-col items-center text-[16px] pt-[20px] pb-[10px] mt-[-7mm]">
             <h2 className="amiri-regular text-[72px] text-primary mb-0.5 leading-none">
               جذر
             </h2>
-            <p className="font-inter text-[14px] tracking-[0.2em] text-foreground/70 mb-[5mm] uppercase mt-[2mm] font-light text-center">
+            <p className="font-inter text-[14px] tracking-[0.2em] text-foreground/70 mb-[12mm] uppercase mt-[2mm] font-light text-center">
               ARABIC ROOT EXPLORER
             </p>
           </div>
